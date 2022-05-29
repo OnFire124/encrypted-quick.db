@@ -10,21 +10,25 @@ export interface IQuickDBOptions {
     table?: string;
     filePath?: string;
     driver?: IDriver;
+    normalKeys?: boolean;
 }
 
 export class QuickDB {
     driver: IDriver;
     tableName: string;
     options: IQuickDBOptions;
+    normalKeys: boolean;
 
     constructor(options: IQuickDBOptions = {}) {
-        options.table ??= "json";
+        // TODO: Change how this is writen
         options.filePath ??= "json.sqlite";
         options.driver ??= new SqliteDriver(options.filePath);
-
+        options.table ??= "json";
+        options.normalKeys ??= false;
         this.options = options;
         this.driver = options.driver;
         this.tableName = options.table;
+        this.normalKeys = options.normalKeys;
 
         this.driver.prepare(this.tableName);
     }
@@ -73,7 +77,7 @@ export class QuickDB {
         if (typeof key != "string")
             throw new Error("First argument (key) needs to be a string");
 
-        if (key.includes(".")) {
+        if (key.includes(".") && !this.normalKeys) {
             const keySplit = key.split(".");
             const [result] = await this.driver.getRowByKey<T>(
                 this.tableName,
@@ -91,7 +95,7 @@ export class QuickDB {
             throw new Error("First argument (key) needs to be a string");
         if (value == null) throw new Error("Missing second argument (value)");
 
-        if (key.includes(".")) {
+        if (key.includes(".") && !this.normalKeys) {
             const keySplit = key.split(".");
             const [result, exist] = await this.driver.getRowByKey(
                 this.tableName,
@@ -230,5 +234,10 @@ export class QuickDB {
         options.table = table;
         options.driver = this.options.driver;
         return new QuickDB(options);
+    }
+
+    useNormalKeys(toggle: boolean): void {
+        if (toggle) this.normalKeys = true;
+        else this.normalKeys = false;
     }
 }
