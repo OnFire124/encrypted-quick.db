@@ -1,7 +1,6 @@
 ## ![Quick.db Logo](https://www.fyreblitz.com/public/quickdb-encr.png)
 **Documentation:** [quickdb.js.org](https://quickdb.js.org) [[Migration Guide](https://quickdb.js.org/overview/migration-guide)] <br>
-**Support:** [discord.gg/plexidev](https://discord.gg/plexidev) <br>
-**NPM:** [npmjs.com/quick.db](https://www.npmjs.com/package/encrypted-quick.db)
+**NPM:** [npmjs.com/encrypted-quick.db](https://www.npmjs.com/package/encrypted-quick.db)
 
 Encrypted-Quick.db is an open-source package meant to provide an easy way for beginners and people of all levels to access & store data in a low to medium volume environment. All data is stored persistently via either [better-sqlite3](https://github.com/JoshuaWise/better-sqlite3) or [promise-mysql](https://www.npmjs.com/package/promise-mysql) and comes way various other quality-of-life features, and now encrypted!
 
