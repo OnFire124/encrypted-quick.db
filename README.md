@@ -1,17 +1,15 @@
-## ![Quick.db Logo](https://www.plexidev.org/quickdb.png)
-> Need a powerful, low-cost VPS for hosting your applications & bots 24/7? Check out our partner, [Contabo](https://www.tkqlhce.com/click-8950879-15301134)! 🎉
-
-
+## ![Quick.db Logo](https://www.fyreblitz.com/public/quickdb-encr.png)
 **Documentation:** [quickdb.js.org](https://quickdb.js.org) [[Migration Guide](https://quickdb.js.org/overview/migration-guide)] <br>
 **Support:** [discord.gg/plexidev](https://discord.gg/plexidev) <br>
-**NPM:** [npmjs.com/quick.db](https://www.npmjs.com/package/quick.db)
+**NPM:** [npmjs.com/quick.db](https://www.npmjs.com/package/encrypted-quick.db)
 
-Quick.db is an open-source package meant to provide an easy way for beginners and people of all levels to access & store data in a low to medium volume environment. All data is stored persistently via either [better-sqlite3](https://github.com/JoshuaWise/better-sqlite3) or [promise-mysql](https://www.npmjs.com/package/promise-mysql) and comes way various other quality-of-life features.
+Encrypted-Quick.db is an open-source package meant to provide an easy way for beginners and people of all levels to access & store data in a low to medium volume environment. All data is stored persistently via either [better-sqlite3](https://github.com/JoshuaWise/better-sqlite3) or [promise-mysql](https://www.npmjs.com/package/promise-mysql) and comes way various other quality-of-life features, and now encrypted!
 
 -   **Persistent Storage** - Data doesn't disappear through restarts
 -   **Multiple Drivers** - You can use either better-sqlite3 or promise-mysql
 -   **Works out of the box** - No need to set up a database server, all the data is stored locally in the same project
 -   **Beginner Friendly** - Originally created for use in tutorials, the documentation is straightforward and jargon-free
+-   **Encrypted** - Now all your data saving to a sqlite file and reading from one is all encrypted through a ENCRYPTION_KEY that you provide in the .env.
 -   & more...
 
 ## Installation
@@ -39,7 +37,7 @@ npm i quick.db promise-mysql    # (Alternative) MySQL Server Connection
 ## Example
 
 ```js
-const { QuickDB } = require("quick.db");
+const { QuickDB } = require("encrypted-quick.db");
 const db = new QuickDB(); // will make a json.sqlite in the root folder
 // if you want to specify a path you can do so like this
 // const db = new QuickDB({ filePath: "source/to/path/test.sqlite" });
@@ -87,7 +85,7 @@ const db = new QuickDB(); // will make a json.sqlite in the root folder
 > **NOTE:** In order to use this driver, install `npm i promise-mysql` separately.
 
 ```js
-const { QuickDB, MySQLDriver } = require("quick.db");
+const { QuickDB, MySQLDriver } = require("encrypted-quick.db");
 (async () => {
     const mysqlDriver = new MySQLDriver({
         host: "localhost",
